@@ -47,8 +47,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "build/*"
+          source: "build/"
           target: ${{ secrets.DEPLOY_PATH }}
+          strip_components: 1
           rm: true
 
   # Job 2: Verify the deployment on the server
