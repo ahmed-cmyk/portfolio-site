@@ -27,8 +27,8 @@ jobs:
       - name: Build Svelte project
         run: pnpm run build
 
-      - name: Deploy built files via SSH
-        uses: appleboy/ssh-action@master
+      - name: Deploy built files via SCP
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -36,9 +36,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "build/*"
           target: ${{ secrets.DEPLOY_PATH }}
-          # Ensures that the target directory on the server is cleaned before new files are copied.
-          # Use with caution, as it will delete existing files in DEPLOY_PATH.
-          # rsync_options: "-az --delete"
 
       - name: Verify deployment
         uses: appleboy/ssh-action@master
@@ -49,6 +46,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             echo "Deployment successful! Verifying files in ${{ secrets.DEPLOY_PATH }}..."
-            ls -la ${{ secrets.DEPLOY_PATH }}
-            # You might want to also check for specific files, e.g.,
-            # ls -la ${{ secrets.DEPLOY_PATH }}/index.html
+            ls -la ${{ secrets.DEPLOY_PATH }}/index.html
