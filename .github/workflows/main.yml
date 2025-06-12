@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "build/*"
+          source: "build/index.html"
           target: ${{ secrets.DEPLOY_PATH }}
 
       - name: Verify deployment
