@@ -1,0 +1,42 @@
+name: Deploy to Server
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - main  # Or 'master', depending on your repository's default branch
+
+jobs:
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository's code, so the workflow can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Deploy files to the server via SSH
+      # This uses a popular and secure action from the GitHub Marketplace.
+      - name: Deploy files via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}             # The IP address of your server, stored in a secret
+          username: ${{ secrets.SSH_USERNAME }}       # The username for SSH login, stored in a secret
+          key: ${{ secrets.SSH_PRIVATE_KEY }}       # The private SSH key, stored in a secret
+          port: ${{ secrets.SSH_PORT }}             # The SSH port, stored in a secret (default is 22)
+          source: "./*"                             # The source files from your repository to upload (./* means all files/folders)
+          target: ${{ secrets.DEPLOY_PATH }}        # The destination path on your server, stored in a secret
+
+      # Optional Step 3: Verify the deployment on the server
+      # This step runs a command on your server after the files are copied.
+      - name: Verify deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "Deployment successful! Verifying files..."
+            ls -la ${{ secrets.DEPLOY_PATH }}
