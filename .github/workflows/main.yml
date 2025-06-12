@@ -52,8 +52,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "./build/*" # Adjust this if your build output directory is different (e.g., './public/*')
+          source: "build/*"
           target: ${{ secrets.DEPLOY_PATH }}
+          rm: true
 
   # Job 3: Verify the deployment on the server
   verify:
