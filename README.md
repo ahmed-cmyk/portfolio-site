@@ -1,58 +1,67 @@
-# Svelte library
+# Portfolio Site
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+A minimal, fast, and framework-free portfolio site built with progressive enhancement in mind.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+This site avoids bloated modern frameworks in favor of small, composable tools like [htmx](https://htmx.org), keeping performance and simplicity as top priorities.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Philosophy
 
-```bash
-# create a new project in the current directory
-npx sv create
+This project reflects my personal preference for:
 
-# create a new project in my-app
-npx sv create my-app
+- ✅ Simplicity over complexity  
+- ⚡ Speed over trendiness  
+- 🧱 HTML-first, progressively enhanced development  
+- 🧰 Small tools with clear purpose over large monoliths  
+
+---
+
+## Project Structure
+
 ```
 
-## Developing
+/
+├── index.html         # Main entry point
+├── about.html         # Additional content pages
+├── css/
+│   └── style.css      # Custom styles (can include Tailwind via CDN if needed)
+└── js/                # Optional scripts
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+````
 
-```bash
-npm run dev
+---
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Getting Started
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
+No build step required. Just open `index.html` in your browser or serve with a static file server:
 
 ```bash
-npm run package
-```
+# using Python 3
+python3 -m http.server
 
-To create a production version of your showcase app:
+# or using Node
+npx serve
+````
 
-```bash
-npm run build
-```
+---
 
-You can preview the production build with `npm run preview`.
+## Tools Used
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+* [htmx](https://htmx.org) – Load content dynamically using plain HTML and attributes
 
-## Publishing
+---
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+## Why Not a Framework?
 
-To publish your library to [npm](https://www.npmjs.com):
+Modern JavaScript frameworks like React or Svelte are powerful, but they often add unnecessary complexity and JavaScript overhead for static sites or content-driven projects.
 
-```bash
-npm publish
-```
+This site embraces a simpler model — where HTML does most of the work.
+
+---
+
+## License
+
+MIT – [LICENSE](LICENSE)
+
+---
