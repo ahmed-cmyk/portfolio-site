@@ -1,4 +1,4 @@
-# Svelte library
+# Portfolio Site (Svelte)
 
 Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
 
